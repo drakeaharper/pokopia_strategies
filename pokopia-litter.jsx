@@ -83,6 +83,272 @@ const CHAINS = [
   { from: "Honey",               via: "Vespiquen", to: ["Rare Furniture"],     special: false, note: "Trade for exclusive items" },
 ];
 
+const CYCLES = [
+  {
+    name: "⛏️ Iron Ingot Cycle",
+    color: "#60a5fa", bg: "#172554",
+    summary: "Smelt Iron Ore into Iron Ingots",
+    pipeline: [
+      { icon: "⛏️", label: "Glimmet / Glimmora", role: "Litter → Iron Ore" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Collect ore from ground" },
+      { icon: "📦", label: "Community Box", role: "Buffer raw Iron Ore" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Deliver ore to furnace" },
+      { icon: "🔥", label: "Smelting Furnace", role: "Burn Pokémon smelts ore" },
+      { icon: "✅", label: "Iron Ingots", role: "Collect from furnace output" },
+    ],
+    buildings: [
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Litter Pokémon (Glimmet/Glimmora)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Gather Pokémon" },
+      { name: "Community Box", icon: "📦", cost: "15 Lumber, 5 Iron Ingot", unlock: "After building tutorial", note: "Place between habitats and furnace" },
+      { name: "Smelting Furnace", icon: "🔥", cost: "20 Stone, 10 Iron Ore, 5 Bricks", unlock: "Unlocked via quest", note: "Processes ore into ingots" },
+    ],
+    pokemon: [
+      { name: "Glimmet", id: 970, role: "Litter", count: "2–3", habitat: "House near Community Box" },
+      { name: "Glimmora", id: 971, role: "Litter", count: "1–2", habitat: "House near Community Box" },
+      { name: "Machop", id: 66, role: "Gather + Build", count: "2–3", habitat: "House between box & furnace" },
+      { name: "Charmander", id: 4, role: "Burn (smelting)", count: "1", habitat: "Near Smelting Furnace" },
+    ],
+    layout: "Place the Community Box centrally between the Litter habitat and the Smelting Furnace. Keep Gather Pokémon housed in range of both. The furnace should be within ~8 tiles of the box for efficient delivery.",
+    grid: {
+      rows: 5, cols: 7,
+      cells: [
+        { r: 0, c: 0, icon: "🏠", label: "Litter", color: "#60a5fa" },
+        { r: 0, c: 1, icon: "⛏️", label: "Glimmet", color: "#60a5fa" },
+        { r: 1, c: 0, icon: "⛏️", label: "Glimmora", color: "#60a5fa" },
+        { r: 2, c: 3, icon: "📦", label: "Box", color: "#fde047" },
+        { r: 1, c: 3, icon: "🏠", label: "Gather", color: "#67e8f9" },
+        { r: 2, c: 4, icon: "🤲", label: "Machop", color: "#67e8f9" },
+        { r: 4, c: 5, icon: "🔥", label: "Furnace", color: "#fb923c" },
+        { r: 4, c: 6, icon: "✅", label: "Output", color: "#4ade80" },
+      ],
+    },
+  },
+  {
+    name: "🍯 Honey Cycle",
+    color: "#fde047", bg: "#422006",
+    summary: "Produce Honey and trade for rare furniture",
+    pipeline: [
+      { icon: "🐝", label: "Combee", role: "Litter → Honey" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Collect honey from ground" },
+      { icon: "📦", label: "Community Box", role: "Buffer Honey" },
+      { icon: "🎭", label: "Vespiquen", role: "Trade Honey → Rare Furniture" },
+      { icon: "✅", label: "Exclusive furniture", role: "Collect from Vespiquen" },
+    ],
+    buildings: [
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Combee (Litter)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Gather Pokémon" },
+      { name: "Community Box", icon: "📦", cost: "15 Lumber, 5 Iron Ingot", unlock: "After building tutorial", note: "Place near Combee habitat" },
+      { name: "Vespiquen Trade Post", icon: "🎭", cost: "10 Lumber, 10 Honey, 5 Fluff", unlock: "Unlocked via quest", note: "Vespiquen exchanges honey for furniture" },
+    ],
+    pokemon: [
+      { name: "Combee", id: 415, role: "Litter", count: "3–4", habitat: "House near Community Box" },
+      { name: "Gastly", id: 92, role: "Gather", count: "2", habitat: "House near box & trade post" },
+      { name: "Dreepy", id: 885, role: "Gather", count: "1–2", habitat: "House near box & trade post" },
+    ],
+    layout: "Combee habitat should be close to the Community Box. Place the Vespiquen Trade Post within delivery range of your Gather Pokémon. This is a simpler cycle — no processing station needed beyond the trade post.",
+    grid: {
+      rows: 4, cols: 6,
+      cells: [
+        { r: 0, c: 0, icon: "🏠", label: "Litter", color: "#fde047" },
+        { r: 0, c: 1, icon: "🐝", label: "Combee", color: "#fde047" },
+        { r: 1, c: 1, icon: "🐝", label: "Combee", color: "#fde047" },
+        { r: 1, c: 3, icon: "📦", label: "Box", color: "#fde047" },
+        { r: 0, c: 3, icon: "🏠", label: "Gather", color: "#67e8f9" },
+        { r: 1, c: 4, icon: "🤲", label: "Gastly", color: "#67e8f9" },
+        { r: 3, c: 5, icon: "🎭", label: "Trade", color: "#c084fc" },
+      ],
+    },
+  },
+  {
+    name: "♻️ Self-Loop: Paper + Iron Ore",
+    color: "#c084fc", bg: "#3b0764",
+    summary: "Trubbish/Garbodor supply AND recycle their own garbage",
+    pipeline: [
+      { icon: "🗑️", label: "Trubbish / Garbodor", role: "Litter → Nonburnable Garbage" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Collect garbage from ground" },
+      { icon: "📦", label: "Community Box", role: "Buffer garbage" },
+      { icon: "♻️", label: "Trubbish / Garbodor", role: "Recycle → Iron Ore + Paper" },
+      { icon: "✅", label: "Iron Ore + Paper", role: "Dual output, fully self-contained" },
+    ],
+    buildings: [
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Trubbish/Garbodor (dual role)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Gather Pokémon" },
+      { name: "Community Box", icon: "📦", cost: "15 Lumber, 5 Iron Ingot", unlock: "After building tutorial", note: "Central hub for garbage buffering" },
+      { name: "Recycling Station", icon: "♻️", cost: "15 Stone, 10 Iron Ore, 5 Paper", unlock: "Unlocked via quest", note: "Where Recycle spec Pokémon process garbage" },
+    ],
+    pokemon: [
+      { name: "Trubbish", id: 568, role: "Litter + Recycle", count: "2–3", habitat: "House near box & recycler" },
+      { name: "Garbodor", id: 569, role: "Litter + Recycle", count: "1–2", habitat: "House near box & recycler" },
+      { name: "Minccino", id: 572, role: "Gather", count: "2", habitat: "House between habitats & box" },
+    ],
+    layout: "This cycle is unique — Trubbish/Garbodor serve double duty as both Litter AND Recycle Pokémon. Place their habitat near both the Community Box and Recycling Station. Gather Pokémon shuttle garbage between them. Fully self-contained loop — no external inputs needed!",
+    grid: {
+      rows: 5, cols: 6,
+      cells: [
+        { r: 0, c: 0, icon: "🏠", label: "Dual Role", color: "#c084fc" },
+        { r: 0, c: 1, icon: "🗑️", label: "Trubbish", color: "#c084fc" },
+        { r: 1, c: 1, icon: "🗑️", label: "Garbodor", color: "#c084fc" },
+        { r: 2, c: 3, icon: "📦", label: "Box", color: "#fde047" },
+        { r: 1, c: 3, icon: "🏠", label: "Gather", color: "#67e8f9" },
+        { r: 2, c: 4, icon: "🤲", label: "Minccino", color: "#67e8f9" },
+        { r: 4, c: 5, icon: "♻️", label: "Recycler", color: "#4ade80" },
+      ],
+    },
+  },
+  {
+    name: "🪵 Lumber Cycle",
+    color: "#d97706", bg: "#431407",
+    summary: "Chop Small Logs into Lumber for building",
+    pipeline: [
+      { icon: "🪵", label: "Haxorus", role: "Litter → Small Logs" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Collect logs from ground" },
+      { icon: "📦", label: "Community Box", role: "Buffer Small Logs" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Deliver logs to sawmill" },
+      { icon: "🌲", label: "Scyther / Farfetch'd", role: "Chop → Lumber" },
+      { icon: "✅", label: "Lumber ready", role: "Essential building material" },
+    ],
+    buildings: [
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Haxorus (Litter)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Gather Pokémon" },
+      { name: "Community Box", icon: "📦", cost: "15 Lumber, 5 Iron Ingot", unlock: "After building tutorial", note: "Place between habitat and sawmill" },
+      { name: "Sawmill", icon: "🌲", cost: "20 Lumber, 10 Stone, 5 Iron Ingot", unlock: "Unlocked via quest", note: "Chop-spec Pokémon process logs here" },
+    ],
+    pokemon: [
+      { name: "Haxorus", id: 612, role: "Litter", count: "2–3", habitat: "House near Community Box" },
+      { name: "Machoke", id: 67, role: "Gather + Build", count: "2", habitat: "House between box & sawmill" },
+      { name: "Scyther", id: 123, role: "Chop", count: "1–2", habitat: "Near Sawmill" },
+    ],
+    layout: "Linear layout works best: Haxorus habitat → Community Box → Sawmill. Gather Pokémon (ideally Machop line for dual Build utility) shuttle logs from box to sawmill. Keep the sawmill at the end of the chain.",
+    grid: {
+      rows: 4, cols: 7,
+      cells: [
+        { r: 0, c: 0, icon: "🏠", label: "Litter", color: "#d97706" },
+        { r: 0, c: 1, icon: "🪵", label: "Haxorus", color: "#d97706" },
+        { r: 1, c: 1, icon: "🪵", label: "Haxorus", color: "#d97706" },
+        { r: 1, c: 3, icon: "📦", label: "Box", color: "#fde047" },
+        { r: 0, c: 3, icon: "🏠", label: "Gather", color: "#67e8f9" },
+        { r: 1, c: 4, icon: "🤲", label: "Machoke", color: "#67e8f9" },
+        { r: 3, c: 6, icon: "🌲", label: "Sawmill", color: "#4ade80" },
+      ],
+    },
+  },
+  {
+    name: "🧱 Brick Cycle",
+    color: "#fb923c", bg: "#431407",
+    summary: "Bake Squishy Clay into Bricks",
+    pipeline: [
+      { icon: "🧱", label: "Paldean Wooper / Clodsire", role: "Litter → Squishy Clay" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Collect clay from ground" },
+      { icon: "📦", label: "Community Box", role: "Buffer Squishy Clay" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Deliver clay to furnace" },
+      { icon: "🔥", label: "Smelting Furnace", role: "Burn Pokémon bakes clay" },
+      { icon: "✅", label: "Bricks", role: "Used in advanced buildings" },
+    ],
+    buildings: [
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Wooper/Clodsire (Litter)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Gather Pokémon" },
+      { name: "Community Box", icon: "📦", cost: "15 Lumber, 5 Iron Ingot", unlock: "After building tutorial", note: "Central buffer for clay" },
+      { name: "Smelting Furnace", icon: "🔥", cost: "20 Stone, 10 Iron Ore, 5 Bricks", unlock: "Unlocked via quest", note: "Shared with Iron Ingot cycle if nearby" },
+    ],
+    pokemon: [
+      { name: "Paldean Wooper", id: 10253, role: "Litter", count: "2–3", habitat: "House near Community Box" },
+      { name: "Clodsire", id: 980, role: "Litter + Bulldoze", count: "1–2", habitat: "House near Community Box" },
+      { name: "Machamp", id: 68, role: "Gather + Build", count: "2", habitat: "House between box & furnace" },
+      { name: "Torchic", id: 255, role: "Burn (baking)", count: "1", habitat: "Near Smelting Furnace" },
+    ],
+    layout: "Similar layout to Iron Ingot — place Community Box between the clay Litter habitat and the Smelting Furnace. Pro tip: If you already have an Iron Ingot cycle, you can share the same furnace and Gather Pokémon by placing clay Pokémon in range of the same Community Box.",
+    grid: {
+      rows: 5, cols: 7,
+      cells: [
+        { r: 0, c: 0, icon: "🏠", label: "Litter", color: "#fb923c" },
+        { r: 0, c: 1, icon: "🧱", label: "Wooper", color: "#fb923c" },
+        { r: 1, c: 0, icon: "🧱", label: "Clodsire", color: "#fb923c" },
+        { r: 2, c: 3, icon: "📦", label: "Box", color: "#fde047" },
+        { r: 1, c: 3, icon: "🏠", label: "Gather", color: "#67e8f9" },
+        { r: 2, c: 4, icon: "🤲", label: "Machamp", color: "#67e8f9" },
+        { r: 4, c: 5, icon: "🔥", label: "Furnace", color: "#f87171" },
+        { r: 4, c: 6, icon: "✅", label: "Output", color: "#4ade80" },
+      ],
+    },
+  },
+  {
+    name: "🪨 Concrete Cycle",
+    color: "#94a3b8", bg: "#0f172a",
+    summary: "Crush Stone into Concrete",
+    pipeline: [
+      { icon: "🪨", label: "Bastiodon / Tyrantrum", role: "Litter → Stone" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Collect stone from ground" },
+      { icon: "📦", label: "Community Box", role: "Buffer Stone" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Deliver to crusher" },
+      { icon: "🔨", label: "Crusher Station", role: "Heavy Pokémon crush stone" },
+      { icon: "✅", label: "Concrete", role: "Used for roads and structures" },
+    ],
+    buildings: [
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Bastiodon/Tyrantrum (Litter)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Gather Pokémon" },
+      { name: "Community Box", icon: "📦", cost: "15 Lumber, 5 Iron Ingot", unlock: "After building tutorial", note: "Place centrally" },
+      { name: "Crusher Station", icon: "🔨", cost: "25 Stone, 10 Iron Ingot, 5 Bricks", unlock: "Unlocked via quest", note: "Heavy Pokémon crush stone here" },
+    ],
+    pokemon: [
+      { name: "Bastiodon", id: 411, role: "Litter", count: "2–3", habitat: "House near Community Box" },
+      { name: "Tyrantrum", id: 697, role: "Litter", count: "1–2", habitat: "House near Community Box" },
+      { name: "Machamp", id: 68, role: "Gather + Build", count: "2–3", habitat: "House between box & crusher" },
+    ],
+    layout: "Straightforward chain: Stone Litter habitat → Community Box → Crusher Station. Machamp line is ideal here for Gather + Build dual role. The Crusher Station tends to be large, so plan extra space at the end of the chain.",
+    grid: {
+      rows: 5, cols: 7,
+      cells: [
+        { r: 0, c: 0, icon: "🏠", label: "Litter", color: "#94a3b8" },
+        { r: 0, c: 1, icon: "🪨", label: "Bastiodon", color: "#94a3b8" },
+        { r: 1, c: 0, icon: "🪨", label: "Tyrantrum", color: "#94a3b8" },
+        { r: 2, c: 3, icon: "📦", label: "Box", color: "#fde047" },
+        { r: 1, c: 3, icon: "🏠", label: "Gather", color: "#67e8f9" },
+        { r: 2, c: 4, icon: "🤲", label: "Machamp", color: "#67e8f9" },
+        { r: 4, c: 6, icon: "🔨", label: "Crusher", color: "#fb923c" },
+      ],
+    },
+  },
+  {
+    name: "🧶 Fluff & Twine Cycle",
+    color: "#f9a8d4", bg: "#500724",
+    summary: "Farm Fluff and Twine for crafting",
+    pipeline: [
+      { icon: "🧶", label: "Mareep / Flaaffy", role: "Litter → Fluff" },
+      { icon: "🪢", label: "Spinarak / Ariados", role: "Litter → Twine" },
+      { icon: "🤲", label: "Gather Pokémon", role: "Collect materials from ground" },
+      { icon: "📦", label: "Community Box", role: "Buffer Fluff & Twine" },
+      { icon: "✅", label: "Crafting materials", role: "Used for furniture & decorations" },
+    ],
+    buildings: [
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Mareep/Flaaffy (Fluff)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Spinarak/Ariados (Twine)" },
+      { name: "Pokémon House", icon: "🏠", cost: "10 Lumber, 5 Stone", unlock: "Story progression", note: "Houses Gather Pokémon" },
+      { name: "Community Box", icon: "📦", cost: "15 Lumber, 5 Iron Ingot", unlock: "After building tutorial", note: "Place centrally between both habitats" },
+    ],
+    pokemon: [
+      { name: "Mareep", id: 179, role: "Litter + Generate", count: "2–3", habitat: "House near Community Box" },
+      { name: "Flaaffy", id: 180, role: "Litter + Generate", count: "1–2", habitat: "House near Community Box" },
+      { name: "Spinarak", id: 167, role: "Litter", count: "2–3", habitat: "House near Community Box" },
+      { name: "Ariados", id: 168, role: "Litter", count: "1–2", habitat: "House near Community Box" },
+      { name: "Cinccino", id: 573, role: "Gather", count: "2–3", habitat: "House near box" },
+    ],
+    layout: "No processing station needed — this is a pure collection cycle. Place both Litter habitats flanking a central Community Box so Gather Pokémon can cover both. Mareep/Flaaffy also have the Generate specialty, giving bonus electricity if you need it.",
+    grid: {
+      rows: 4, cols: 5,
+      cells: [
+        { r: 0, c: 0, icon: "🏠", label: "Fluff", color: "#f9a8d4" },
+        { r: 0, c: 1, icon: "🧶", label: "Mareep", color: "#f9a8d4" },
+        { r: 1, c: 0, icon: "🧶", label: "Flaaffy", color: "#f9a8d4" },
+        { r: 2, c: 2, icon: "📦", label: "Box", color: "#fde047" },
+        { r: 1, c: 2, icon: "🏠", label: "Gather", color: "#67e8f9" },
+        { r: 2, c: 3, icon: "🤲", label: "Cinccino", color: "#67e8f9" },
+        { r: 3, c: 4, icon: "🏠", label: "Twine", color: "#fbbf24" },
+        { r: 3, c: 3, icon: "🪢", label: "Spinarak", color: "#fbbf24" },
+      ],
+    },
+  },
+];
+
 const FARM_SETUPS = [
   {
     name: "⛏️ Iron Ingot Farm",
@@ -403,12 +669,223 @@ function GatherTab() {
   );
 }
 
+function LayoutGrid({ grid, accentColor }) {
+  const cellSize = 52;
+  const gap = 2;
+  const cellMap = {};
+  grid.cells.forEach((cell) => { cellMap[`${cell.r}-${cell.c}`] = cell; });
+
+  return (
+    <div style={{
+      display: "inline-grid",
+      gridTemplateColumns: `repeat(${grid.cols}, ${cellSize}px)`,
+      gridTemplateRows: `repeat(${grid.rows}, ${cellSize}px)`,
+      gap,
+      background: "#0a0a0f",
+      border: `1px solid ${accentColor}33`,
+      borderRadius: 10,
+      padding: 8,
+    }}>
+      {Array.from({ length: grid.rows * grid.cols }).map((_, idx) => {
+        const r = Math.floor(idx / grid.cols);
+        const c = idx % grid.cols;
+        const cell = cellMap[`${r}-${c}`];
+        return (
+          <div key={idx} style={{
+            width: cellSize, height: cellSize,
+            background: cell ? `${cell.color}18` : "#111827",
+            border: cell ? `1.5px solid ${cell.color}66` : "1px solid #1e293b44",
+            borderRadius: 6,
+            display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center",
+            gap: 1,
+          }}>
+            {cell && <>
+              <span style={{ fontSize: 14, lineHeight: 1 }}>{cell.icon}</span>
+              <span style={{ fontSize: 7, fontWeight: 700, color: cell.color, textAlign: "center", lineHeight: 1.1 }}>
+                {cell.label}
+              </span>
+            </>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function CyclesTab() {
+  const [expanded, setExpanded] = useState(null);
+
+  return (
+    <div>
+      <div style={{ background: "#0d1117", border: "1px solid #334155", borderRadius: 14, padding: "14px 18px", marginBottom: 22 }}>
+        <p style={{ margin: 0, fontSize: 12, color: "#94a3b8", lineHeight: 1.7 }}>
+          Each cycle is a complete material pipeline — from Litter source to finished product.
+          Click a cycle to see buildings required, Pokémon assignments, and a suggested placement grid.
+        </p>
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        {CYCLES.map((cycle, ci) => {
+          const isOpen = expanded === ci;
+          return (
+            <div key={cycle.name} style={{
+              background: "#0d1117",
+              border: `1px solid ${isOpen ? cycle.color + "88" : cycle.color + "44"}`,
+              borderRadius: 16,
+              overflow: "hidden",
+              transition: "border-color 0.2s",
+            }}>
+              {/* Header — always visible */}
+              <div
+                onClick={() => setExpanded(isOpen ? null : ci)}
+                style={{
+                  padding: "16px 20px",
+                  cursor: "pointer",
+                  display: "flex", alignItems: "center", gap: 12,
+                  background: isOpen ? `${cycle.bg}` : "transparent",
+                  transition: "background 0.2s",
+                }}
+              >
+                <span style={{ fontSize: 15, fontWeight: 700, color: cycle.color, flex: 1 }}>
+                  {cycle.name}
+                </span>
+                <span style={{
+                  fontSize: 10, color: "#94a3b8", background: "#111827",
+                  padding: "3px 10px", borderRadius: 999, border: "1px solid #1e293b",
+                }}>
+                  {cycle.summary}
+                </span>
+                <span style={{ fontSize: 14, color: "#64748b", transition: "transform 0.2s", transform: isOpen ? "rotate(180deg)" : "none" }}>
+                  ▼
+                </span>
+              </div>
+
+              {/* Expanded content */}
+              {isOpen && (
+                <div style={{ padding: "0 20px 20px" }}>
+                  {/* Pipeline */}
+                  <div style={{ marginBottom: 20 }}>
+                    <SectionLabel>Pipeline</SectionLabel>
+                    <div style={{ display: "flex", alignItems: "center", gap: 0, flexWrap: "wrap" }}>
+                      {cycle.pipeline.map((step, i) => (
+                        <div key={i} style={{ display: "flex", alignItems: "center", gap: 0 }}>
+                          <div style={{
+                            display: "flex", flexDirection: "column", alignItems: "center",
+                            gap: 3, padding: "8px 10px", minWidth: 80, textAlign: "center",
+                            background: "#111827", borderRadius: 10, border: "1px solid #1e293b",
+                          }}>
+                            <span style={{ fontSize: 16 }}>{step.icon}</span>
+                            <span style={{ fontSize: 10, fontWeight: 700, color: "#e2e8f0" }}>{step.label}</span>
+                            <span style={{ fontSize: 9, color: "#64748b", lineHeight: 1.3 }}>{step.role}</span>
+                          </div>
+                          {i < cycle.pipeline.length - 1 && (
+                            <span style={{ fontSize: 14, color: "#334155", padding: "0 4px" }}>→</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Two-column: Grid + Buildings */}
+                  <div style={{ display: "flex", gap: 20, flexWrap: "wrap", marginBottom: 20 }}>
+                    {/* Layout Grid */}
+                    {cycle.grid && (
+                      <div style={{ flex: "0 0 auto" }}>
+                        <SectionLabel>Suggested Layout</SectionLabel>
+                        <LayoutGrid grid={cycle.grid} accentColor={cycle.color} />
+                        <p style={{ fontSize: 9, color: "#475569", margin: "8px 0 0", maxWidth: 300, lineHeight: 1.5 }}>
+                          {cycle.layout}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Buildings */}
+                    <div style={{ flex: 1, minWidth: 260 }}>
+                      <SectionLabel>Buildings Required</SectionLabel>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                        {cycle.buildings.map((b, i) => (
+                          <div key={i} style={{
+                            display: "flex", alignItems: "flex-start", gap: 10,
+                            padding: "10px 14px", background: "#111827",
+                            borderRadius: 10, border: "1px solid #1e293b",
+                          }}>
+                            <span style={{ fontSize: 18, flexShrink: 0 }}>{b.icon}</span>
+                            <div style={{ flex: 1 }}>
+                              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                                <span style={{ fontSize: 11, fontWeight: 700, color: "#e2e8f0" }}>{b.name}</span>
+                                <span style={{
+                                  fontSize: 9, padding: "2px 7px", borderRadius: 999,
+                                  background: "#1e1b4b", color: "#a5b4fc", border: "1px solid #4c1d9555",
+                                }}>
+                                  {b.cost}
+                                </span>
+                              </div>
+                              <div style={{ fontSize: 9, color: "#64748b", marginTop: 3, lineHeight: 1.4 }}>
+                                {b.note}
+                                {b.unlock && <span style={{ color: "#475569" }}> · {b.unlock}</span>}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Pokémon Assignments */}
+                  <div>
+                    <SectionLabel>Pokémon Assignments</SectionLabel>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                      {cycle.pokemon.map((mon) => (
+                        <div key={`${mon.name}-${mon.role}`} style={{
+                          display: "flex", alignItems: "center", gap: 8,
+                          padding: "8px 14px", background: "#111827",
+                          borderRadius: 12, border: "1px solid #1e293b",
+                          minWidth: 220,
+                        }}>
+                          <div style={{
+                            width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
+                            background: "#0f172a", borderRadius: 8, border: "1px solid #1e293b", flexShrink: 0,
+                          }}>
+                            <img src={spriteUrl(mon.id)} alt={mon.name}
+                              style={{ width: 30, height: 30, imageRendering: "pixelated" }}
+                              onError={(e) => { e.target.style.display = "none"; }} />
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: 11, fontWeight: 700, color: "#e2e8f0" }}>{mon.name}</div>
+                            <div style={{ display: "flex", gap: 4, flexWrap: "wrap", marginTop: 2 }}>
+                              <span style={{
+                                fontSize: 9, padding: "1px 6px", borderRadius: 999,
+                                background: cycle.bg, color: cycle.color, border: `1px solid ${cycle.color}44`,
+                                fontWeight: 600,
+                              }}>
+                                {mon.role}
+                              </span>
+                              <span style={{ fontSize: 9, color: "#64748b" }}>×{mon.count}</span>
+                            </div>
+                            <div style={{ fontSize: 9, color: "#475569", marginTop: 2 }}>{mon.habitat}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ── MAIN ──────────────────────────────────────────────────────────────────────
 
 export default function App() {
   const [tab, setTab] = useState("flow");
   const tabs = [
     { id: "flow",   label: "⚙️ Automation Flow" },
+    { id: "cycles", label: "🔄 Cycles" },
     { id: "litter", label: "💫 Litter Pokémon" },
     { id: "gather", label: "🤲 Gather Pokémon" },
   ];
@@ -457,6 +934,7 @@ export default function App() {
       {/* Content */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 20px 0" }}>
         {tab === "flow"   && <FlowTab />}
+        {tab === "cycles" && <CyclesTab />}
         {tab === "litter" && <LitterTab />}
         {tab === "gather" && <GatherTab />}
       </div>
